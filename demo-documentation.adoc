@@ -21,7 +21,7 @@ actor Human
 note right of Human : Hello
 ....
 
-.Graphiz Dot Test
+.Graphviz Dot Test
 [plantuml, "{diagramsdir}/testdot", svg]
 ....
 @startuml
@@ -37,9 +37,32 @@ Ein Beispiel für ein direkt im Dokument eingebettetes PlantUML-Diagramm.
 
 // diagram placeholder
 
+.Klassendiagramm mit PlantUML 
+[plantuml, "{diagramsdir}/syntax-example1", svg]  
+....
+@startuml
+class Graphic 
+interface Shape <<Interface>> {
+  draw()
+}
+class "Circle" as c1
+class Triangle
+class Square
+
+Graphic -> Shape
+Shape <|.. c1
+Shape <|.. Triangle
+Shape <|.. Square
+@enduml
+....
+
 === Inkludiert
 
 Ein Beispiel für ein im Dokument inkludiertes PlantUML-Diagramm als externe Datei.
-
 // diagram placeholder
 
+.Klassendiagramm mit PlantUML 
+[plantuml, "{diagramsdir}/syntax-example2", svg]  
+....
+include::{plantumlsdir}/Classdiagram.puml[]
+....

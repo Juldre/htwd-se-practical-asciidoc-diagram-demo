@@ -1,0 +1,20 @@
+@startuml
+!include <C4/C4_Container>
+!include <office/Users/user.puml>
+!include <office/Users/mobile_user.puml>
+
+Person(customerPerson,"Customer","<$user> <$mobile_user> \n A customer of the bank, with personal bank accounts")
+
+Enterprise_Boundary(c1,"Big Bank pic"){
+    System(bankingSystem,"Internet Banking System","Allows customers to view information about their bank accounts, and make payments")
+    System_Ext(mailSystem,"E-mail System","The internal Microsoft Exchange e-mail system.")
+    System_Ext(mainBankingSystem,"Mainframe Banking System","Stores all of the core banking information about customers, accounts, transactions, etc.")
+}
+
+
+Rel(customerPerson,bankingSystem,"Uses")
+Rel_Back(customerPerson,mailSystem,"Sens e-mails to")
+Rel_Neighbor(bankingSystem,mailSystem,"Sends e-mails","SMTP")
+Rel(bankingSystem,mainBankingSystem,"Uses")
+
+@enduml
